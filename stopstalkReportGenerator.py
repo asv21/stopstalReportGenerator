@@ -212,43 +212,50 @@ class reportGenBotWorker(QThread):
                     
                     pageToPrint="<html><head>"+\
                         "<style>"+\
+                        "@page {size: A4 landscape; margin: 2cm;}"+\
                         "#student {font-family: Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%;}"+\
                         "#student td, #student th {border: 0px solid #ddd;padding: 8px;}"+\
                         "#student tr:nth-child(even){background-color: #f2f2f2;}"+\
                         "#student tr:hover {background-color: #ddd;}"+\
                         "#student th {padding-top: 12px;padding-bottom: 12px;text-align:center;background-color: #ffffff;color: black;}"+\
                         "</style>"+\
-                        "</head></body>\
-                        <h1>Name: "+ str(row[0])+"   Id: "+str(row[1]) +"</h1><br>"+\
+                        "</head></body>"+\
+                        "<table style:='padding:12px'>"+\
+                        "<tr><td><h1>NAME: "+ str(row[0]).upper()+"</h1></td><td><h1> ID No.: "+str(row[1]) +"</h1></td><td><img src='G:/My Drive/avinash.s.vaidya@klh.edu.in 2020-10-09 10 05/KLH_logo.png' alt='KLH Logo'></td></tr>"+\
+                        "</table>"+\
                         "<p>"+self.driver.find_element_by_xpath('//*[@id="user-details"]/div[1]/span[1]').text+"</p><br>"+\
                         "<table>"+\
                         "<tbody>"+\
-                        "<tr>"+\
                         "<td>"+\
-                        "<table id='student'><thead>"+\
-                        "<tr style='text-wrap:normal;word-wrap:break-all'>"+\
-                        "<th>CodeChef</th><th>CodeForces</th><th>Spoj</th><th>"+\
-                        "AtCoder</th><th>HackerEarth</th><th>HackerRank</th>"+\
-                        "<th>UVa</th><th>Timus</th>"+\
-                        "</tr>"+\
-                        "</thead>"+\
-                        "<tbody>"+\
-                        "<td>"+self.driver.find_element_by_xpath('//*[@id="codechef-solved-count"]').text+"</td>"+\
-                        "<td>"+self.driver.find_element_by_xpath('//*[@id="codeforces-solved-count"]').text+"</td>"+\
-                        "<td>"+self.driver.find_element_by_xpath('//*[@id="spoj-solved-count"]').text+"</td>"+\
-                        "<td>"+self.driver.find_element_by_xpath('//*[@id="atcoder-solved-count"]').text+"</td>"+\
-                        "<td>"+self.driver.find_element_by_xpath('//*[@id="hackerearth-solved-count"]').text+"</td>"+\
-                        "<td>"+self.driver.find_element_by_xpath('//*[@id="hackerrank-solved-count"]').text+"</td>"+\
-                        "<td>"+self.driver.find_element_by_xpath('//*[@id="uva-solved-count"]').text+"</td>"+\
-                        "<td>"+self.driver.find_element_by_xpath('//*[@id="timus-solved-count"]').text+"</td></tbody>"+\
                         "<table id='student'>"+\
                         "<thead>"+\
-                        "<tr>"+\
-                        "<th colspan='2'><strong>Day Streak</strong></th>"+\
-                        "<th colspan='2'><strong>Accepted Solution Streak</strong></th>"+\
-                        "<th colspan='2'><strong>Problems</strong></th>"+\
-                        "</tr>"+\
-                        "<tr><th><h6>Current</h6></th><th><h6>Maximum</h6></th><th><h6>Current</h6></th><th><h6>Maximum</h6></th><th><h6>Solved</h6></th><th><h6>Total</h6></th></tr></thead>"+\
+                            "<tr style='text-wrap:normal;word-wrap:break-all'>"+\
+                            "<th>CodeChef</th><th>CodeForces</th><th>Spoj</th><th>"+\
+                            "AtCoder</th><th>HackerEarth</th><th>HackerRank</th>"+\
+                            "<th>UVa</th><th>Timus</th>"+\
+                            "</tr>"+\
+                        "</thead>"+\
+                        "<tbody>"+\
+                            "<td>"+self.driver.find_element_by_xpath('//*[@id="codechef-solved-count"]').text+"</td>"+\
+                            "<td>"+self.driver.find_element_by_xpath('//*[@id="codeforces-solved-count"]').text+"</td>"+\
+                            "<td>"+self.driver.find_element_by_xpath('//*[@id="spoj-solved-count"]').text+"</td>"+\
+                            "<td>"+self.driver.find_element_by_xpath('//*[@id="atcoder-solved-count"]').text+"</td>"+\
+                            "<td>"+self.driver.find_element_by_xpath('//*[@id="hackerearth-solved-count"]').text+"</td>"+\
+                            "<td>"+self.driver.find_element_by_xpath('//*[@id="hackerrank-solved-count"]').text+"</td>"+\
+                            "<td>"+self.driver.find_element_by_xpath('//*[@id="uva-solved-count"]').text+"</td>"+\
+                            "<td>"+self.driver.find_element_by_xpath('//*[@id="timus-solved-count"]').text+"</td>"+\
+                        "</tbody>"+\
+                        "<table id='student'>"+\
+                        "<thead>"+\
+                            "<tr>"+\
+                                "<th colspan='2'><strong>Day Streak</strong></th>"+\
+                                "<th colspan='2'><strong>Accepted Solution Streak</strong></th>"+\
+                                "<th colspan='2'><strong>Problems</strong></th>"+\
+                            "</tr>"+\
+                            "<tr>"+\
+                            "<th><h6>Current</h6></th><th><h6>Maximum</h6></th><th><h6>Current</h6></th><th><h6>Maximum</h6></th><th><h6>Solved</h6></th><th><h6>Total</h6></th>"+\
+                            "</tr>"+\
+                        "</thead>"+\
                         "<tbody>"+\
                                 "<tr>"+\
                                     "<td>"+self.driver.find_element_by_xpath('//*[@id="curr-streak"]').text+"</td>"+\
@@ -258,12 +265,14 @@ class reportGenBotWorker(QThread):
                                     "<td>"+self.driver.find_element_by_xpath('//*[@id="solved-problems"]').text+"</td>"+\
                                     "<td>"+self.driver.find_element_by_xpath('//*[@id="total-problems"]').text+"</td>"+\
                                 "</tr>"+\
-                            "</tbody>"+\
+                        "</tbody>"+\
                         "</table>"+\
                         "</td>"+\
-                        "<tr>"+str(image_element)+"</tr>"+\
+                        str(image_element)+\
                         "<tbody>"+\
-                        "</table></body></html>"  
+                        "</table>"+\
+                        "</body>"+\
+                        "</html>"  
                     df.loc[index,4]=self.driver.find_element_by_xpath('//*[@id="solved-problems"]').text
                     try:
                         # time.sleep(2)                                           
